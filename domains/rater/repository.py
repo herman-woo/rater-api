@@ -1,5 +1,6 @@
 from sqlmodel import Session, select
 from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import selectinload
 from .models import Rater
 
 #Repository Module for Accesing SQL database
@@ -16,15 +17,15 @@ class RaterRepository:
     
     # GET/Retrieve All Raters
     def find_all(self):
-        return self.session.exec(select(Rater)).all()
+        stmt = select(Rater).options(selectinload(Rater.exposures))  # Replace 'some_relationship' with actual relationship name
+        return self.session.exec(stmt).all()
     
     # GET Rater by it's own ID
     def find_by_id(self, rater_id: int) -> Rater | None:
         rater = self.session.exec(
             select(Rater)
             .where(Rater.id == rater_id)
-            # .options(joinedload(Rater.items))
-        ).first()
+        )
         print("DEBUG: Rater retrieved:", rater)
 #         print("DEBUG: Cart items:", rater.items if cart else "No cart found")
         return rater

@@ -2,7 +2,7 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
 from decimal import Decimal
 from datetime import datetime
-from domains.exposure.models import Exposure
+# from domains.exposure.models import Exposure
 
 class Rater(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -21,7 +21,7 @@ class Rater(SQLModel, table=True):
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Reverse relationship
-    exposures: List[Exposure] = Relationship(back_populates="rater", sa_relationship_kwargs={"lazy": "joined"})
+    exposures: List["Exposure"] = Relationship(back_populates="rater", sa_relationship_kwargs={"lazy": "joined"})
 
 
 
