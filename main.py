@@ -4,7 +4,8 @@ from contextlib import asynccontextmanager
 from db import create_db_and_tables, SessionDep
 from domains.rater.routes import router as rating_router
 from domains.exposure.routes import router as expo_router
-# from domains.rater.models import Rater
+from domains.rater.models import Rater
+from domains.exposure.models import Exposure
 # from domains.rater.repository import RaterRepository
 # from domains.location_exposure.routes import router as code_router
 

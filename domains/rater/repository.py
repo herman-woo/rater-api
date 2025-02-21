@@ -17,18 +17,28 @@ class RaterRepository:
     
     # GET/Retrieve All Raters
     def find_all(self):
-        stmt = select(Rater).options(selectinload(Rater.exposures))  # Replace 'some_relationship' with actual relationship name
-        return self.session.exec(stmt).all()
+        return self.session.exec(select(Rater)).all()
     
     # GET Rater by it's own ID
     def find_by_id(self, rater_id: int) -> Rater | None:
         rater = self.session.exec(
             select(Rater)
             .where(Rater.id == rater_id)
-        )
+            .options(joinedload(Rater.exposures)) 
+        ).first()
         print("DEBUG: Rater retrieved:", rater)
 #         print("DEBUG: Cart items:", rater.items if cart else "No cart found")
         return rater
+    
+
+    # def get_rater_by_id(self, rater_id: int):
+    # stmt = (
+    #     select(Rater)
+    #     .where(Rater.id == rater_id)
+    #     .options(joinedload(Rater.children))  # Replace 'children' with your actual relationship
+    # )
+    # result = self.session.exec(stmt).first()  # Ensure only one result is fetched
+    # return result  # Now it includes nested children
     
     # Delete a Rater by ID
     def delete(self, rater_id: int):

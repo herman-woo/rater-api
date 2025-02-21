@@ -13,7 +13,7 @@ GET http://127.0.0.1:8080/rater HTTP/1.1
 
 ###
 
-GET http://127.0.0.1:8080/rater/3 HTTP/1.1
+GET http://127.0.0.1:8080/rater/1 HTTP/1.1
 
 ###
 
@@ -22,7 +22,7 @@ content-type: application/json
 
 {
     "rater_id":1,
-    "note":"",
+    "note":"Hello Worlds",
     "product_description": "Crop Production" ,
     "naics_code" : 111,
     "naics_premium" : 1000

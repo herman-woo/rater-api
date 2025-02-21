@@ -1,5 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
+from domains.rater.models import Rater
 
 
 class Exposure(SQLModel, table=True):
@@ -14,4 +15,4 @@ class Exposure(SQLModel, table=True):
 
     # Define relationship to parent Rater
     rater_id: int = Field(foreign_key="rater.id", index=True)  # Foreign key linking to Cart
-    rater: Optional["Rater"] = Relationship(back_populates="exposures")
+    rater: Optional[Rater] = Relationship(back_populates="exposures")

@@ -14,3 +14,6 @@ class ExposureRepository:
         self.session.commit()
         self.session.refresh(exposure)
         return exposure
+    
+    def find_all(self):
+        return self.session.exec(select(Exposure)).all()

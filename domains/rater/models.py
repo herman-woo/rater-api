@@ -21,8 +21,7 @@ class Rater(SQLModel, table=True):
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Reverse relationship
-    exposures: List["Exposure"] = Relationship(back_populates="rater", sa_relationship_kwargs={"lazy": "joined"})
-
+    exposures: List["Exposure"] = Relationship(back_populates="rater")#, sa_relationship_kwargs={"lazy": "joined"}*/)
 
 
     def update_timestamp(self):
