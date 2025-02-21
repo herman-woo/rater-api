@@ -1,0 +1,24 @@
+POST http://127.0.0.1:8080/rater HTTP/1.1
+content-type: application/json
+
+{
+    "year": 2025,
+    "business_unit": "Environmental",
+    "business_unit_id": 1
+}
+
+###
+
+GET http://127.0.0.1:8080/rater HTTP/1.1
+
+###
+
+GET http://127.0.0.1:8080/rater/3 HTTP/1.1
+
+###
+
+POST http://127.0.0.1:8080/rater/1/exposure HTTP/1.1
+content-type: application/json
+
+{
+}
