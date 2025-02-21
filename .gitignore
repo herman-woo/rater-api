@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+
+
+
+#PERSONAL STUFF
+_endpoints
+.http
+.https
