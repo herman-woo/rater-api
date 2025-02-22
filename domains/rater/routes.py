@@ -14,8 +14,9 @@ def create_rater(rater_data: dict,db: SessionDep):
     rater_repo = RaterRepository(db)
     rater = Rater(**rater_data)
     saved_rater = rater_repo.save(rater)
-    return {"message": "Rater created", "rater_id": saved_rater.id}
+    return {"message": "Rater created", "id": saved_rater.id}
 
+#Get all Raters, without children
 @router.get("/")
 def get_all_raters(db: SessionDep):
     rater_repo = RaterRepository(db)
@@ -28,39 +29,10 @@ def get_cart(rater_id: int, db: SessionDep):
 
     if not rater:
         raise HTTPException(status_code=404, detail="rater not found")
-    return rater
-    # Explicitly convert `Cart` to a dictionary, including `items`
-    # return {
-        # "id": rater.id,
-        # "subtotal_premium": rater.subtotal_premium,  # Convert Decimal to float for JSON compatibility
-        # "total_modifiers": float(rater.total_modifiers),
-        # "final_premium": float(rater.final_premium),
-        # "items": [
-        #     {
-        #         "id": item.id,
-        #         "cart_id": item.cart_id,
-        #         "product_description": item.product_description,
-        #         "premium": float(item.premium),  # Convert Decimal to float
-        #         "quantity": item.quantity,
-        #         "naics_premium": float(item.naics_premium),
-        #         "note": item.note,
-        #         "naics_code": item.naics_code,
-        #         "modifier": item.modifier
-        #     }
-        #     for item in cart.items
-        # ],
-        # "mods": [
-        #     {
-        #         "id": mod.id,
-        #         "cart_id": mod.cart_id,
-        #         "type": mod.type,
-        #         "description": mod.description,
-        #         "factor": mod.factor,
-        #         "note": mod.note
-        #     }
-        #     for mod in cart.taxes
-        # ]
-    # }
+
+    result = rater.model_dump()
+    result["items"] = [exposure.model_dump() for exposure in rater.exposures]
+    return result
 
 
 @router.delete("/{rater_id}")

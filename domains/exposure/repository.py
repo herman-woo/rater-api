@@ -17,3 +17,16 @@ class ExposureRepository:
     
     def find_all(self):
         return self.session.exec(select(Exposure)).all()
+    
+    def find_expo_by_id(self, expo_id: int) -> Exposure | None:
+        expo = self.session.exec(select(Exposure).where(Exposure.id == expo_id)).first()
+        return expo
+
+    def delete_exposure(self, expo_id: int):
+        """Delete a item by ID."""
+        expo = self.find_expo_by_id(expo_id)
+        if expo:
+            self.session.delete(expo)
+            self.session.commit()
+            return True
+        return False

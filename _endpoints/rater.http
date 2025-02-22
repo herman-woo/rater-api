@@ -4,7 +4,12 @@ content-type: application/json
 {
     "year": 2025,
     "business_unit": "Environmental",
-    "business_unit_id": 1
+    "business_unit_id": 1,
+    "named_insured": "Bombardier",
+    "named_insured_id": 1,
+    "product": "Project Pollution Policy",
+    "product_id": 1,
+    "subtotal_premium": 23011
 }
 
 ###
@@ -17,13 +22,22 @@ GET http://127.0.0.1:8080/rater/1 HTTP/1.1
 
 ###
 
+GET http://127.0.0.1:8080/rater/18 HTTP/1.1
+
+###
+
 POST http://127.0.0.1:8080/rater/1/exposure HTTP/1.1
 content-type: application/json
 
 {
-    "rater_id":1,
+    "rater_id":18,
     "note":"Hello Worlds",
     "product_description": "Crop Production" ,
     "naics_code" : 111,
     "naics_premium" : 1000
 }
+
+
+
+###
+GET http://127.0.0.1:8080/reference/mods/quantitative HTTP/1.1
