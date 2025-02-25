@@ -5,6 +5,8 @@ from datetime import datetime
 # from domains.exposure.models import Exposure
 
 class Rater(SQLModel, table=True):
+    # __tablename__ = "rater_summary"
+
     id: Optional[int] = Field(default=None, primary_key=True)
     year: int = Field(default=None,nullable=True)
     business_unit_id: int = Field(default=None,nullable=True)
@@ -21,7 +23,8 @@ class Rater(SQLModel, table=True):
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Reverse relationship
-    exposures: List["Exposure"] = Relationship(back_populates="rater")#, sa_relationship_kwargs={"lazy": "joined"}*/)
+    exposures: List["Exposure"] = Relationship(back_populates="rater")#, sa_relationship_kwargs={"lazy": "joined"})
+    credits: List["Credit"] = Relationship(back_populates="rater")#, sa_relationship_kwargs={"lazy": "joined"})
 
 
     def update_timestamp(self):

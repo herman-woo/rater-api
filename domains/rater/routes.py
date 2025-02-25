@@ -1,7 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
 from .models import Rater
-# from .models import Rater, Exposure, Modifier
-# from .services import calculate_cart_totals
 from .repository import RaterRepository
 from db import SessionDep
 
@@ -32,6 +30,7 @@ def get_cart(rater_id: int, db: SessionDep):
 
     result = rater.model_dump()
     result["items"] = [exposure.model_dump() for exposure in rater.exposures]
+    result["mods"] = [credit.model_dump() for credit in rater.credits]
     return result
 
 
