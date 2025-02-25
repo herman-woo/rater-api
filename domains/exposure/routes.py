@@ -18,8 +18,7 @@ def create_exposure(rater_id:int, expo_data: dict,db: SessionDep):
     saved_expo = expo_repo.save(expo)
     calculate_rater_totals(rater)
     db.commit()
-    # return {"message": "Exposure created", "exposure_id": saved_expo.id}
-    return {"message","Exposure Created"}
+    return {"message": "Exposure created", "exposure_id": saved_expo.id}
 
 
 @router.get("/")

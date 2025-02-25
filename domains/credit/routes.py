@@ -12,7 +12,6 @@ router = APIRouter(prefix="/rater/{rater_id}/credit", tags=["Credit"])
 # Create Rater
 @router.post("/")
 def create_creditsure(rater_id:int, credit_data: dict,db: SessionDep):
-    # print("Create Credit")
     credit_repo = CreditRepository(db)
     rater = RaterRepository(db).find_by_id(rater_id)
     credit = Credit(**credit_data)
@@ -20,7 +19,6 @@ def create_creditsure(rater_id:int, credit_data: dict,db: SessionDep):
     calculate_rater_totals(rater)
     db.commit()
     return {"message": "Credit created", "creditsure_id": saved_credit.id}
-    return {"message","Credit Created"}
 
 
 @router.get("/")

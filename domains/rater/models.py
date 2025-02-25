@@ -2,7 +2,6 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
 from decimal import Decimal
 from datetime import datetime
-# from domains.exposure.models import Exposure
 
 class Rater(SQLModel, table=True):
     # __tablename__ = "rater_summary"
@@ -25,6 +24,7 @@ class Rater(SQLModel, table=True):
     # Reverse relationship
     exposures: List["Exposure"] = Relationship(back_populates="rater")#, sa_relationship_kwargs={"lazy": "joined"})
     credits: List["Credit"] = Relationship(back_populates="rater")#, sa_relationship_kwargs={"lazy": "joined"})
+    options: List["Option"] = Relationship(back_populates="rater")#, sa_relationship_kwargs={"lazy": "joined"})
 
 
     def update_timestamp(self):

@@ -5,6 +5,7 @@ from db import create_db_and_tables
 from domains.rater.routes import router as rating_router
 from domains.exposure.routes import router as expo_router
 from domains.credit.routes import router as credit_router
+from domains.option.routes import router as option_router
 from reference.routes import router as code_router
 
 @asynccontextmanager
@@ -29,6 +30,8 @@ async def root():
 app.include_router(rating_router, prefix="/rater")
 app.include_router(expo_router)
 app.include_router(credit_router)
+app.include_router(option_router)
+
 app.include_router(code_router, prefix="/reference")
 
 

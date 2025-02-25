@@ -31,6 +31,7 @@ def get_cart(rater_id: int, db: SessionDep):
     result = rater.model_dump()
     result["items"] = [exposure.model_dump() for exposure in rater.exposures]
     result["mods"] = [credit.model_dump() for credit in rater.credits]
+    result["options"] = [option.model_dump() for option in rater.options]
     return result
 
 

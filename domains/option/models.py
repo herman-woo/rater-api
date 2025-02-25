@@ -4,7 +4,7 @@ from decimal import Decimal
 from datetime import datetime
 from domains.rater.models import Rater
 
-class QuoteOption(SQLModel, table=True):
+class Option(SQLModel, table=True):
     __tablename__ = "quote_options"
 
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -17,9 +17,8 @@ class QuoteOption(SQLModel, table=True):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
-
     rater_id: int = Field(foreign_key="rater.id", index=True)
-    rater: Optional[Rater] = Relationship(back_populates="credits")
+    rater: Optional[Rater] = Relationship(back_populates="options")
 
     def update_timestamp(self):
         self.updated_at = datetime.utcnow()
