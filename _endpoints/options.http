@@ -2,8 +2,12 @@ POST http://127.0.0.1:8080/rater/1/option HTTP/1.1
 content-type: application/json
 
 {
-    "total_limit": 1,
-    "per_limit":1,
-    "rater_id":1,
+    "total_limit": 1000000,
+    "per_limit":1000000,
+    "rater_id":3,
     "total_premium": 1
 }
+
+###
+
+DELETE http://127.0.0.1:8080/rater/1/option/1 HTTP/1.1
