@@ -1,4 +1,4 @@
-# rater-api
+# workstation-rater-api
 
 
 ## Setup
