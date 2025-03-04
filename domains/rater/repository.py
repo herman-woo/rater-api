@@ -24,12 +24,23 @@ class RaterRepository:
         rater = self.session.exec(
             select(Rater)
             .where(Rater.id == rater_id)
-            .options(joinedload(Rater.exposures)) 
+            .options(joinedload(Rater.exposures))
         ).first()
         print("DEBUG: Rater retrieved:", rater)
 #         print("DEBUG: Cart items:", rater.items if cart else "No cart found")
         return rater
     
+
+    # GET Rater by Account ID
+    def find_by_id_account_id(self, account_id: int) -> Rater | None:
+        rater = self.session.exec(
+            select(Rater)
+            .where(Rater.account_id == account_id)
+            .options(joinedload(Rater.exposures))
+        ).first()
+        print("DEBUG: Rater retrieved:", rater)
+#         print("DEBUG: Cart items:", rater.items if cart else "No cart found")
+        return rater
 
     # def get_rater_by_id(self, rater_id: int):
     # stmt = (

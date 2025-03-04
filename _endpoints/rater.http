@@ -20,6 +20,13 @@ GET http://127.0.0.1:8080/rater HTTP/1.1
 
 GET http://127.0.0.1:8080/rater/1 HTTP/1.1
 
+
+
+### Get Rater by Account Id
+
+GET http://127.0.0.1:8080/rater/account/52 HTTP/1.1
+
+
 ###
 
 GET http://127.0.0.1:8080/rater/18 HTTP/1.1

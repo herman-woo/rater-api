@@ -34,6 +34,19 @@ def get_cart(rater_id: int, db: SessionDep):
     result["options"] = [option.model_dump() for option in rater.options]
     return result
 
+@router.get("/account/{account_id}")
+def get_rater_by_account_id(account_id: int, db: SessionDep):
+    rater_repo = RaterRepository(db)
+    rater = rater_repo.find_by_id_account_id(account_id)
+
+    if not rater:
+        raise HTTPException(status_code=404, detail="rater not found")
+
+    result = rater.model_dump()
+    result["items"] = [exposure.model_dump() for exposure in rater.exposures]
+    result["mods"] = [credit.model_dump() for credit in rater.credits]
+    result["options"] = [option.model_dump() for option in rater.options]
+    return result
 
 @router.delete("/{rater_id}")
 def delete_cart(rater_id: int, db: SessionDep):
